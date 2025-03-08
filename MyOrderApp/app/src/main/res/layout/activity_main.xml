@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/btnChooseFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn thức ăn" />
+
+    <Button
+        android:id="@+id/btnChooseDrink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn đồ uống"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thoát"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn đã chọn: "
+        android:layout_marginTop="24dp"
+        android:textSize="18sp" />
+
+</LinearLayout>
