@@ -21,6 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<activity
+    android:name=".MainBasic"
+    android:exported="true">
+</activity>
+<activity
+    android:name=".ItemActivity"
+    android:exported="false" />
     </application>
 
 </manifest>

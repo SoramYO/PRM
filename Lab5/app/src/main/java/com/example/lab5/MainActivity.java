@@ -1,5 +1,6 @@
 package com.example.lab5;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,39 +19,40 @@ public class MainActivity extends AppCompatActivity implements UserAdapter.OnIte
     private List<User> userList;
     private EditText etUsername, etFullname, etEmail;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_advanced);
+// In MainActivity.java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main_advanced);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        etUsername = findViewById(R.id.et_username);
-        etFullname = findViewById(R.id.et_fullname);
-        etEmail = findViewById(R.id.et_email);
-        Button btnAdd = findViewById(R.id.btn_add);
+    recyclerView = findViewById(R.id.recyclerView);
+    etUsername = findViewById(R.id.et_username);
+    etFullname = findViewById(R.id.et_fullname);
+    etEmail = findViewById(R.id.et_email);
+    Button btnAdd = findViewById(R.id.btn_add);
+    Button btnSwitchToBasic = findViewById(R.id.btn_switch_to_basic);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        userList = new ArrayList<>();
-        userAdapter = new UserAdapter(userList, this);
-        recyclerView.setAdapter(userAdapter);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    userList = new ArrayList<>();
+    userAdapter = new UserAdapter(userList, this);
+    recyclerView.setAdapter(userAdapter);
 
-        // Thêm người dùng ban đầu (tùy chọn)
-        userList.add(new User("NguyenTT", "Tran Thanh Nguyen", "nguyentt@fpt.edu.vn"));
-        userList.add(new User("Antv", "Tran Van An", "antv@gmail.com"));
-        userAdapter.notifyDataSetChanged();
+    // Add initial users (optional)
+    userList.add(new User("NguyenTT", "Tran Thanh Nguyen", "nguyentt@fpt.edu.vn"));
+    userList.add(new User("Antv", "Tran Van An", "antv@gmail.com"));
+    userAdapter.notifyDataSetChanged();
 
-        btnAdd.setOnClickListener(v -> {
-            String username = etUsername.getText().toString();
-            String fullname = etFullname.getText().toString();
-            String email = etEmail.getText().toString();
-            if (!username.isEmpty() && !fullname.isEmpty() && !email.isEmpty()) {
-                userAdapter.addUser(new User(username, fullname, email));
-                etUsername.setText("");
-                etFullname.setText("");
-                etEmail.setText("");
-            }
-        });
-    }
+    // Add button functionality
+    btnAdd.setOnClickListener(v -> {
+        // Existing add user code
+    });
+
+    // Add switch to basic activity functionality
+    btnSwitchToBasic.setOnClickListener(v -> {
+        Intent intent = new Intent(MainActivity.this, MainBasic.class);
+        startActivity(intent);
+    });
+}
 
     @Override
     public void onEditClick(User user, int position) {

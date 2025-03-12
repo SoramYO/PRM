@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Hình vuông bo góc màu trắng -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6,0L42,0A6,6 0,0 1,48 6L48,42A6,6 0,0 1,42 48L6,48A6,6 0,0 1,0 42L0,6A6,6 0,0 1,6 0z"/>
+
+    <!-- Logo "f" -->
+    <path
+        android:fillColor="#3B5998"
+        android:pathData="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184 0.714-4.121 2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9 22.981,44 24,44c0.921,0 1.82-0.084 2.707-0.204V29.301z"/>
+</vector> 

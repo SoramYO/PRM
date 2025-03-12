@@ -36,6 +36,11 @@ public class DrinkActivity extends AppCompatActivity {
         drinkListView.setAdapter(adapter);
 
         drinkListView.setOnItemClickListener((parent, view, position, id) -> {
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                parent.getChildAt(i).setSelected(false);
+            }
+            // Set new selection
+            view.setSelected(true);
             selectedDrink = drinkList.get(position);
         });
 

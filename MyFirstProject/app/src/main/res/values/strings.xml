@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MyFirstProject</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="android">Android</string>
+    <string name="PHP">PHP</string>
+    <string name="SQL">SQL</string>
+    <string name="PYTHON">PYTHON</string>
+    <string name="linear_layout">Linear Layout</string>
+    <string name="sign_in_form">Sign In Form</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="create_account">Not account yet? Create one</string>
+    <string name="or">Or</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="language_text">English</string>
+    <string name="email_hint">Email or Phone</string>
+    <string name="login">LOG IN</string>
+    <string name="signup">Sign Up for Facebook</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="change">Change</string>
+    <string name="dot"> • </string>
+    <string name="logo">logo</string>
+    <string name="help">Help</string>
+</resources>

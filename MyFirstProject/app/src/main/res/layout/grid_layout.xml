@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Cột 1 phần tử 1 -->
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFEB3B"
+        android:gravity="center"
+        android:text="@string/number_1"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/text2"
+        app:layout_constraintEnd_toStartOf="@+id/text3"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.16667" />
+
+    <!-- Cột 1 phần tử 2 -->
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#2E7D32"
+        android:gravity="center"
+        android:text="@string/number_2"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text3"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.16667" />
+
+    <!-- Cột 2 phần tử 1 -->
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#C2185B"
+        android:gravity="center"
+        android:text="@string/number_3"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/text4"
+        app:layout_constraintEnd_toStartOf="@+id/text6"
+        app:layout_constraintHeight_percent="0.33333"
+        app:layout_constraintStart_toEndOf="@+id/text1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.33333" />
+
+    <!-- Cột 2 phần tử 2 -->
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFEB3B"
+        android:gravity="center"
+        android:text="@string/number_4"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/text5"
+        app:layout_constraintEnd_toStartOf="@+id/text6"
+        app:layout_constraintHeight_percent="0.33333"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@+id/text3"
+        app:layout_constraintWidth_percent="0.33333" />
+
+    <!-- Cột 2 phần tử 3 -->
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#D32F2F"
+        android:gravity="center"
+        android:text="@string/number_5"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text6"
+        app:layout_constraintHeight_percent="0.33334"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@+id/text4"
+        app:layout_constraintWidth_percent="0.33333" />
+
+    <!-- Cột 3 phần tử 1 -->
+    <TextView
+        android:id="@+id/text6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#795548"
+        android:gravity="center"
+        android:text="@string/number_6"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/text7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintStart_toEndOf="@+id/text3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <!-- Cột 3 phần tử 2 -->
+    <TextView
+        android:id="@+id/text7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:text="@string/number_7"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toEndOf="@+id/text5"
+        app:layout_constraintTop_toBottomOf="@+id/text6"
+        app:layout_constraintWidth_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
