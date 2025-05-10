@@ -87,18 +87,20 @@ public class ContactSelectionActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         long groupId = dbHelper.addGroup(groupName);
 
-        if (groupId != -1) {
-            for (Contact contact : selectedContacts) {
-                dbHelper.addMemberToGroup(groupId, contact.getId());
-            }
+    if (groupId != -1) {
+        for (Contact contact : selectedContacts) {
+            dbHelper.addMemberToGroup(groupId, contact.getId());
+        }
 
-            Group newGroup = new Group(groupName, selectedContacts);
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("group", newGroup);
-            setResult(RESULT_OK, resultIntent);
-            Toast.makeText(this, "Đã tạo nhóm: " + groupName, Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
+        Group newGroup = new Group(groupName, selectedContacts);
+        newGroup.setId(groupId); // ADD THIS LINE to set the ID
+        
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("group", newGroup);
+        setResult(RESULT_OK, resultIntent);
+        Toast.makeText(this, "Đã tạo nhóm: " + groupName, Toast.LENGTH_SHORT).show();
+        finish();
+    } else {
             Toast.makeText(this, "Lỗi khi tạo nhóm", Toast.LENGTH_SHORT).show();
         }
     }

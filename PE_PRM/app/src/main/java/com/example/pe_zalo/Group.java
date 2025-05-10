@@ -5,6 +5,7 @@
     import java.util.List;
 
     public class Group implements Serializable {
+        private long id;
         private String name;
         private List<Contact> members;
 
@@ -12,6 +13,13 @@
             this.name = name;
             this.members = new ArrayList<>(members);
         }
+            public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
         public String getName() {
             return name;
@@ -24,6 +32,10 @@
         public int getMemberCount() {
             return members.size();
         }
+
+    public void setMembers(List<Contact> members) {
+        this.members = new ArrayList<>(members);
+    }
 
         // Tạo tên nhóm từ tên các thành viên
         public static String generateGroupName(List<Contact> members) {

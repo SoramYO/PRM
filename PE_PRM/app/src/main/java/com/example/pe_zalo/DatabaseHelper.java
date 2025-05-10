@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "chat_group_manager.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Bảng nhóm
     public static final String TABLE_GROUPS = "groups";
@@ -133,30 +133,31 @@ public void onCreate(SQLiteDatabase db) {
     }
 
     // Lấy tất cả nhóm
-    public List<Group> getAllGroups() {
-        List<Group> groupList = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_GROUPS, null, null, null, null, null, null);
+public List<Group> getAllGroups() {
+    List<Group> groupList = new ArrayList<>();
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_GROUPS, null, null, null, null, null, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                int idIndex = cursor.getColumnIndex(COLUMN_GROUP_ID);
-                int nameIndex = cursor.getColumnIndex(COLUMN_GROUP_NAME);
+    if (cursor.moveToFirst()) {
+        do {
+            int idIndex = cursor.getColumnIndex(COLUMN_GROUP_ID);
+            int nameIndex = cursor.getColumnIndex(COLUMN_GROUP_NAME);
 
-                if (idIndex != -1 && nameIndex != -1) {
-                    long groupId = cursor.getLong(idIndex);
-                    String groupName = cursor.getString(nameIndex);
-                    List<Contact> members = getMembersByGroupId(groupId);
-                    Group group = new Group(groupName, members);
-                    groupList.add(group);
-                }
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return groupList;
+            if (idIndex != -1 && nameIndex != -1) {
+                long groupId = cursor.getLong(idIndex);
+                String groupName = cursor.getString(nameIndex);
+                List<Contact> members = getMembersByGroupId(groupId);
+                Group group = new Group(groupName, members);
+                group.setId(groupId); // THIS LINE IS CRITICAL - SET THE ID!
+                groupList.add(group);
+            }
+        } while (cursor.moveToNext());
     }
+
+    cursor.close();
+    db.close();
+    return groupList;
+}
 
     // Lấy thành viên theo groupId
     private List<Contact> getMembersByGroupId(long groupId) {
@@ -187,4 +188,62 @@ String query = "SELECT c.* FROM " + TABLE_CONTACTS + " c " +
         db.close();
         return members;
     }
+    // Add these methods to your DatabaseHelper class
+
+// Cập nhật thông tin nhóm
+public boolean updateGroup(long groupId, String newName) {
+    SQLiteDatabase db = this.getWritableDatabase();
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_GROUP_NAME, newName);
+    int rowsAffected = db.update(TABLE_GROUPS, values, COLUMN_GROUP_ID + " = ?", 
+                                 new String[]{String.valueOf(groupId)});
+    db.close();
+    return rowsAffected > 0;
+}
+
+// Xóa một nhóm và các mối quan hệ thành viên
+public boolean deleteGroup(long groupId) {
+    SQLiteDatabase db = this.getWritableDatabase();
+    // Xóa tất cả các thành viên của nhóm trước
+    db.delete(TABLE_MEMBERS, COLUMN_MEMBER_GROUP_ID + " = ?", 
+              new String[]{String.valueOf(groupId)});
+    // Sau đó xóa nhóm
+    int rowsAffected = db.delete(TABLE_GROUPS, COLUMN_GROUP_ID + " = ?", 
+                                new String[]{String.valueOf(groupId)});
+    db.close();
+    return rowsAffected > 0;
+}
+
+// Xóa một thành viên khỏi nhóm
+public boolean removeMemberFromGroup(long groupId, long contactId) {
+    SQLiteDatabase db = this.getWritableDatabase();
+    int rowsAffected = db.delete(TABLE_MEMBERS, 
+                               COLUMN_MEMBER_GROUP_ID + " = ? AND " + 
+                               COLUMN_MEMBER_CONTACT_ID + " = ?", 
+                               new String[]{String.valueOf(groupId), String.valueOf(contactId)});
+    db.close();
+    return rowsAffected > 0;
+}
+
+// Lấy thông tin nhóm theo ID
+public Group getGroupById(long groupId) {
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_GROUPS, null, COLUMN_GROUP_ID + " = ?", 
+                            new String[]{String.valueOf(groupId)}, null, null, null);
+    
+    Group group = null;
+    if (cursor != null && cursor.moveToFirst()) {
+        int nameIndex = cursor.getColumnIndex(COLUMN_GROUP_NAME);
+        if (nameIndex != -1) {
+            String groupName = cursor.getString(nameIndex);
+            List<Contact> members = getMembersByGroupId(groupId);
+            group = new Group(groupName, members);
+            group.setId(groupId); // We need to add this field to Group class
+        }
+    }
+    
+    if (cursor != null) cursor.close();
+    db.close();
+    return group;
+}
 }

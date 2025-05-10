@@ -24,6 +24,9 @@
         <activity
             android:name=".ContactSelectionActivity"
             android:exported="false" />
+            <activity
+    android:name=".EditGroupActivity"
+    android:exported="false" />
     </application>
 
 </manifest>
